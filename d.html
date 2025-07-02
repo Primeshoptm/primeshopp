@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Letni Festiwal Subskrypcji</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #00c6ff;
+      --secondary: #0072ff;
+      --light-bg: #f8f9fc;
+      --text-color: #333;
+      --card-bg: #fff;
+      --border-radius: 20px;
+      --shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      text-align: center;
+      padding: 4rem 1rem 2rem;
+      color: white;
+    }
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+    .container {
+      background: var(--light-bg);
+      border-radius: var(--border-radius);
+      padding: 3rem 2rem;
+      max-width: 600px;
+      margin: -2rem auto 2rem;
+      box-shadow: var(--shadow);
+    }
+    .hidden {
+      display: none;
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 1rem;
+      background: var(--secondary);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background: #005ae0;
+    }
+    .switch-link {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .switch-link a {
+      color: var(--secondary);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    #result {
+      margin-top: 2rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Letni Festiwal Subskrypcji ☀️</h1>
+    <p>Wygraj dostęp do Spotify, Netflix, Nitro i więcej!</p>
+  </header>
+
+  <section class="container" id="login">
+    <h2>Zaloguj się</h2>
+    <div class="form-group">
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" />
+    </div>
+    <div class="form-group">
+      <label for="login-password">Hasło</label>
+      <input type="password" id="login-password" />
+    </div>
+    <button onclick="loginUser()">Zaloguj się</button>
+    <div class="switch-link">
+      Nie masz konta? <a onclick="showRegister()">Załóż konto</a>
+    </div>
+  </section>
+
+  <section class="container hidden" id="register">
+    <h2>Utwórz konto</h2>
+    <div class="form-group">
+      <label for="new-email">Email</label>
+      <input type="email" id="new-email" />
+    </div>
+    <div class="form-group">
+      <label for="new-password">Hasło</label>
+      <input type="password" id="new-password" />
+    </div>
+    <button onclick="registerUser()">Zarejestruj się</button>
+    <div class="switch-link">
+      Masz już konto? <a onclick="showLogin()">Zaloguj się</a>
+    </div>
+  </section>
+
+  <section class="container hidden" id="quiz">
+    <h2>Quiz - Odpowiedz na pytania</h2>
+    <form id="quiz-form">
+      <div class="form-group">
+        <label>1. Jakie są główne cele i misja sklepu Prime Shop?</label>
+        <input type="text" name="q0" />
+      </div>
+      <div class="form-group">
+        <label>2. Skąd wziął się pomysł na założenie Prime Shop?</label>
+        <input type="text" name="q1" />
+      </div>
+      <div class="form-group">
+        <label>3. Kim są klienci docelowi Prime Shop?</label>
+        <input type="text" name="q2" />
+      </div>
+      <div class="form-group">
+        <label>4. Czy Prime Shop działa tylko w Polsce, czy także za granicą?</label>
+        <input type="text" name="q3" />
+      </div>
+      <div class="form-group">
+        <label>5. Jakie były największe wyzwania przy rozwijaniu sklepu?</label>
+        <input type="text" name="q4" />
+      </div>
+      <div class="form-group">
+        <label>6. Czy Prime Shop współpracuje z innymi markami lub firmami?</label>
+        <input type="text" name="q5" />
+      </div>
+      <div class="form-group">
+        <label>7. Jakie wartości są najważniejsze dla zespołu Prime Shop?</label>
+        <input type="text" name="q6" />
+      </div>
+      <div class="form-group">
+        <label>8. Jakie są najpopularniejsze produkty w ofercie sklepu?</label>
+        <input type="text" name="q7" />
+      </div>
+      <div class="form-group">
+        <label>9. Czy Prime Shop organizuje promocje, wydarzenia specjalne lub premiery?</label>
+        <input type="text" name="q8" />
+      </div>
+      <div class="form-group">
+        <label>10. Co według właścicieli lub pracowników Prime Shop sprawia, że ten sklep jest wyjątkowy?</label>
+        <input type="text" name="q9" />
+      </div>
+
+      <button type="button" onclick="checkAnswers()">Sprawdź odpowiedzi</button>
+    </form>
+    <div id="result"></div>
+  </section>
+
+  <script>
+    // Wbudowani użytkownicy
+    const users = [
+      { email: 'brk.ay.96@hotmail.com', password: 'Burak123' },
+      { email: 'pipe_guerra1502@hotmail.com', password: 'Diciembre29' },
+      { email: 'equivoxjoel@hotmail.fr', password: 'Chevalier10' },
+      { email: 'brenda.s.gomez@hotmail.com', password: '9991945brenda' },
+      { email: 'priscilla.santtos@hotmail.com', password: 'Computador0231' },
+      { email: 'universitarioemcristo@hotmail.com', password: 'Universitario1@' },
+      { email: 'JMSheppard98@live.com', password: 'Jared1998!' },
+      { email: 'riper91@hotmail.com', password: 'Owenana123' },
+      { email: 'mokhtari.houari@hotmail.be', password: 'Oujda1050' },
+      { email: 'acolson22@outlook.com', password: 'Handlebar22!?' },
+      { email: 'carolina_marucci@hotmail.com', password: 'Maria240195' },
+      { email: 'gledson.ribeiro@outlook.com', password: 'Hotmail2929' },
+      { email: 'pacosantamaria100@hotmail.com', password: 'Cormoran1' },
+      { email: 'maxidandrea@hotmail.com', password: 'MAXI5791' },
+      { email: 'amanii80@hotmail.com', password: 'Ahah2004' },
+      { email: 'salsa-lari@hotmail.com', password: 'Tormenta.25' },
+      { email: 'fanny_robledo_blazquez@hotmail.com', password: 'Fannysolohay1' },
+      { email: 'el.nazareno.07@hotmail.com', password: 'jacob1711' },
+      { email: 'jonatancoronado@hotmail.com', password: 'J1coronaq' },
+      { email: 'aubert92@live.fr', password: 'apa7978020943.' },
+      { email: 'v_c_g15@hotmail.com', password: 'adritkm8' },
+      { email: 'matheus.rigo1516@outlook.com', password: 'Matheus13062004' },
+      { email: 'bea.ugo.ss59540@hotmail.fr', password: '16Juillet2016!' },
+      { email: 'cire21@hotmail.com', password: 'chatillon' },
+    ];
+    let currentUser = null;
+
+    function showRegister() {
+      document.getElementById('login').classList.add('hidden');
+      document.getElementById('register').classList.remove('hidden');
+      document.getElementById('quiz').classList.add('hidden');
+    }
+
+    function showLogin() {
+      document.getElementById('register').classList.add('hidden');
+      document.getElementById('login').classList.remove('hidden');
+      document.getElementById('quiz').classList.add('hidden');
+    }
+
+    function registerUser() {
+      const email = document.getElementById('new-email').value;
+      const password = document.getElementById('new-password').value;
+      if (email && password) {
+        if (users.some(u => u.email === email)) {
+          alert("Użytkownik o takim emailu już istnieje.");
+          return;
+        }
+        users.push({ email, password });
+        alert("Konto utworzone! Zaloguj się.");
+        showLogin();
+      } else {
+        alert("Proszę wypełnić wszystkie pola.");
+      }
+    }
+
+    function loginUser() {
+      const email = document.getElementById('login-email').value;
+      const password = document.getElementById('login-password').value;
+      const user = users.find(u => u.email === email && u.password === password);
+      if (user) {
+        currentUser = email;
+        document.getElementById('login').classList.add('hidden');
+        document.getElementById('register').classList.add('hidden');
+        document.getElementById('quiz').classList.remove('hidden');
+      } else {
+        alert("Niepoprawne dane logowania.");
+      }
+    }
+
+    // Odpowiedzi do quizu
+    const correctAnswers = [
+      "Dominacja rynku",
+      "Z dupy xD",
+      "Mądrymi osobami i ambitnymi",
+      "Worldwie",
+      "Nie było!",
+      "Nie, działa samemu",
+      "Wszystkie",
+      "Nitro Boost / Social boost",
+      "Tak",
+      "Klienci"
+    ];
+
+    function checkAnswers() {
+      const form = document.getElementById('quiz-form');
+      let score = 0;
+      for (let i = 0; i < correctAnswers.length; i++) {
+        const userAnswer = form['q' + i].value.trim().toLowerCase();
+        const correctAnswer = correctAnswers[i].toLowerCase();
+        if (userAnswer === correctAnswer) {
+          score++;
+        }
+      }
+      const resultDiv = document.getElementById('result');
+      resultDiv.textContent = `Twoja poprawna odpowiedzi: ${score} z ${correctAnswers.length}`;
+    }
+  </script>
+</body>
+</html>
